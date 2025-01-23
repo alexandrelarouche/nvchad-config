@@ -9,11 +9,18 @@ vim.api.nvim_set_keymap("n", "j", [[v:count == 0 ? "gj" : "j"]], { noremap = tru
 vim.api.nvim_set_keymap("n", "k", [[v:count == 0 ? "gk" : "k"]], { noremap = true, expr = true })
 vim.api.nvim_set_keymap("n", "<Down>", [[v:count == 0 ? "gj" : "j"]], { noremap = true, expr = true })
 vim.api.nvim_set_keymap("n", "<Up>", [[v:count == 0 ? "gk" : "k"]], { noremap = true, expr = true })
+vim.api.nvim_set_keymap("i", "<Down>", "<C-o>gj", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("i", "<Up>", "<C-o>gk", { noremap = true, silent = true })
+
+-- vim.api.nvim_set_keymap("i", "j", [[v:count == 0 ? "gj" : "j"]], { noremap = true, expr = true })
+-- vim.api.nvim_set_keymap("i", "k", [[v:count == 0 ? "gk" : "k"]], { noremap = true, expr = true })
+-- vim.api.nvim_set_keymap("i", "<Down>", [[v:count == 0 ? "gj" : "j"]], { noremap = true, expr = true })
+-- vim.api.nvim_set_keymap("i", "<Up>", [[v:count == 0 ? "gk" : "k"]], { noremap = true, expr = true })
 
 local map = vim.keymap.set
 
-map({ "i", "n" }, "<C-k>", "<Up>", { desc = "Move up" })
-map({ "i", "n" }, "<C-j>", "<Down>", { desc = "Move down" })
+map({ "i", "n" }, "<C-gk>", "<Up>", { desc = "Move up" })
+map({ "i", "n" }, "<C-gj>", "<Down>", { desc = "Move down" })
 
 map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jk", "<ESC>")
