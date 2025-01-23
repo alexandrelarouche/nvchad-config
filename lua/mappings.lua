@@ -4,9 +4,16 @@ require "nvchad.mappings"
 -- These disable replace mode
 vim.api.nvim_set_keymap("n", "R", "<Nop>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "r", "<Nop>", { noremap = true, silent = true })
--- add yours here
+-- Navigate visual lines instead of editor lines
+vim.api.nvim_set_keymap("n", "j", [[v:count == 0 ? "gj" : "j"]], { noremap = true, expr = true })
+vim.api.nvim_set_keymap("n", "k", [[v:count == 0 ? "gk" : "k"]], { noremap = true, expr = true })
+vim.api.nvim_set_keymap("n", "<Down>", [[v:count == 0 ? "gj" : "j"]], { noremap = true, expr = true })
+vim.api.nvim_set_keymap("n", "<Up>", [[v:count == 0 ? "gk" : "k"]], { noremap = true, expr = true })
 
 local map = vim.keymap.set
+
+map({ "i", "n" }, "<C-k>", "<Up>", { desc = "Move up" })
+map({ "i", "n" }, "<C-j>", "<Down>", { desc = "Move down" })
 
 map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jk", "<ESC>")
