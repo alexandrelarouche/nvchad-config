@@ -41,4 +41,9 @@ map({ "n", "v" }, "<leader>rc", "<Plug>SnipClose", { desc = "SnipRun Close" })
 
 -- Disable `s` that removes a character (conflict with mini.surround)
 -- vim.keymap.set({ "n", "x" }, "s", "<Nop>")
-vim.keymap.set("n", "<leader>de", vim.diagnostic.open_float)
+map("n", "<leader>de", vim.diagnostic.open_float)
+
+-- Aerial
+map("n", "<leader>a", "<cmd>AerialToggle<CR>")
+
+map("n", "<leader>fs", "<cmd>Telescope lsp_document_symbols<CR>")

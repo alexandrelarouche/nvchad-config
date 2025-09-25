@@ -36,6 +36,14 @@ return {
     opts = overrides.treesitter,
   },
   {
+    "nvim-treesitter/nvim-treesitter-context",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    lazy = false,
+    config = function()
+      require("treesitter-context").setup()
+    end,
+  },
+  {
     "nvim-tree/nvim-tree.lua",
     opts = require "configs.nvim-tree",
   },
@@ -48,7 +56,7 @@ return {
     dependencies = {
       "neovim/nvim-lspconfig",
       -- "mfussenegger/nvim-dap", "mfussenegger/nvim-dap-python", --optional
-      { "nvim-telescope/telescope.nvim", branch = "0.1.x", dependencies = { "nvim-lua/plenary.nvim" } },
+      { "nvim-telescope/telescope.nvim", tag = "0.1.8", branch = "0.1.x", dependencies = { "nvim-lua/plenary.nvim" } },
     },
     -- lazy = false,
     branch = "regexp", -- This is the regexp branch, use this for the new version
@@ -101,6 +109,10 @@ return {
     lazy = false,
   },
   {
+    "tpope/vim-repeat",
+    event = "VeryLazy",
+  },
+  {
     "kylechui/nvim-surround",
     version = "*", -- Use for stability; omit to use `main` branch for the latest features
     event = "VeryLazy",
@@ -108,6 +120,52 @@ return {
       require("nvim-surround").setup {
         -- Configuration here, or leave empty to use defaults
       }
+    end,
+  },
+  {
+    "stevearc/aerial.nvim",
+    opts = {},
+    event = "VeryLazy",
+    -- Optional dependencies
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-tree/nvim-web-devicons",
+    },
+    config = function()
+      require("aerial").setup {
+        -- optionally use on_attach to set keymaps when aerial has attached to a buffer
+        on_attach = function(bufnr)
+          -- Jump forwards/backwards with '{' and '}'
+          vim.keymap.set("n", "{", "<cmd>AerialPrev<CR>", { buffer = bufnr })
+          vim.keymap.set("n", "}", "<cmd>AerialNext<CR>", { buffer = bufnr })
+        end,
+      }
+    end,
+  },
+  {
+    "ggandor/leap.nvim",
+    enabled = true,
+    keys = {
+      { "s", mode = { "n", "x", "o" }, desc = "Leap Forward to" },
+      { "S", mode = { "n", "x", "o" }, desc = "Leap Backward to" },
+      { "gs", mode = { "n", "x", "o" }, desc = "Leap from Windows" },
+    },
+    dependencies = {
+      "tpope/vim-repeat",
+    },
+    config = function()
+      require("leap").set_default_mappings()
+      vim.keymap.del({ "x", "o" }, "x")
+      vim.keymap.del({ "x", "o" }, "X")
+
+      -- Skip the middle of alphabetic words:
+      --   foobar[quux]
+      --   ^----^^^--^^
+      require("leap").opts.preview_filter = function(ch0, ch1, ch2)
+        return not (ch1:match "%s" or ch0:match "%a" and ch1:match "%a" and ch2:match "%a")
+      end
+      require("leap").opts.equivalence_classes = { " \t\r\n", "([{", ")]}", "'\"`" }
+      require("leap.user").set_repeat_keys("<enter>", "<backspace>")
     end,
   },
 }
