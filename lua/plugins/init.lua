@@ -89,7 +89,10 @@ return {
     build = "sh install.sh",
     -- do 'sh install.sh 1' if you want to force compile locally
     config = function()
-      require("sniprun").setup()
+      require("sniprun").setup {
+        selected_interpreters = { "Python3_fifo" },
+        repl_enable = { "Python3_fifo" },
+      }
     end,
     ft = { "python", "julia" },
   },
