@@ -3,8 +3,8 @@ local options = {
     lua = { "stylua" },
     css = { "prettier" },
     html = { "prettier" },
-    python = { "black" },
-    latex = {'tex-fmt'}
+    python = { "isort", "black" },
+    latex = { "tex-fmt" },
   },
 
   format_on_save = {

@@ -7,6 +7,9 @@ return {
     opts = require "configs.conform",
   },
   {
+    "stsewd/isort.nvim",
+  },
+  {
     "mfussenegger/nvim-lint",
     config = function()
       require "configs.lspconfig"
@@ -25,7 +28,7 @@ return {
     opts = {
       ensure_installed = {
         "black",
-        "pyright",
+        "basedpyright",
         "julia-lsp",
         "jupytext",
       },

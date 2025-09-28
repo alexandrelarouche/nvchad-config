@@ -27,7 +27,7 @@ map({ "i", "n" }, "<C-gj>", "<Down>", { desc = "Move down" })
 map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jk", "<ESC>")
 
-map("n", "<leader>oi", "<cmd>PyrightOrganizeImports<cr>", { desc = "Organize Imports" })
+-- map("n", "<leader>oi", "<cmd>PyrightOrganizeImports<cr>", { desc = "Organize Imports" })
 map("n", "<leader>Rr", ":!%:p", { desc = "Run File" })
 -- map("n", "<leader>vs", "<cmd>VenvSelect<cr>", {desc="Select Venv"})
 
