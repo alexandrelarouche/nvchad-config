@@ -175,12 +175,6 @@ return {
       require("leap.user").set_repeat_keys("<enter>", "<backspace>")
     end,
   },
-  -- {
-  --   "folke/tokyonight.nvim",
-  --   lazy = false,
-  --   priority = 1000,
-  --   opts = {},
-  -- },
   {
     "lervag/vimtex",
     lazy = false, -- we don't want to lazy load VimTeX
