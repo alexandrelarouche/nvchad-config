@@ -28,7 +28,7 @@ return {
     opts = {
       ensure_installed = {
         "black",
-        "basedpyright",
+        "pyright",
         "julia-lsp",
         "jupytext",
       },
@@ -43,7 +43,9 @@ return {
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     lazy = false,
     config = function()
-      require("treesitter-context").setup()
+      require("treesitter-context").setup {
+        max_lines = 3, -- How many lines the window should span. Values <= 0 mean no limit.
+      }
     end,
   },
   {
@@ -173,4 +175,138 @@ return {
       require("leap.user").set_repeat_keys("<enter>", "<backspace>")
     end,
   },
+  -- {
+  --   "folke/tokyonight.nvim",
+  --   lazy = false,
+  --   priority = 1000,
+  --   opts = {},
+  -- },
+  {
+    "lervag/vimtex",
+    lazy = false, -- we don't want to lazy load VimTeX
+    -- tag = "v2.15", -- uncomment to pin to a specific release
+    init = function()
+      -- VimTeX configuration goes here, e.g.
+      vim.g.vimtex_view_method = "sioyek"
+    end,
+  },
+  {
+    "edluffy/hologram.nvim",
+    config = function()
+      require("hologram").setup {
+        auto_display = true, -- WIP automatic markdown image display, may be prone to breaking
+      }
+    end,
+  },
+  {
+    "folke/twilight.nvim",
+    opts = {},
+  },
+  -- {
+  --   "mfussenegger/nvim-dap",
+  --   lazy = true,
+  --   -- Copied from LazyVim/lua/lazyvim/plugins/extras/dap/core.lua and
+  --   -- modified.
+  --   keys = {
+  --     {
+  --       "<leader>db",
+  --       function()
+  --         require("dap").toggle_breakpoint()
+  --       end,
+  --       desc = "Toggle Breakpoint",
+  --     },
+  --
+  --     {
+  --       "<leader>dc",
+  --       function()
+  --         require("dap").continue()
+  --       end,
+  --       desc = "Continue",
+  --     },
+  --
+  --     {
+  --       "<leader>dC",
+  --       function()
+  --         require("dap").run_to_cursor()
+  --       end,
+  --       desc = "Run to Cursor",
+  --     },
+  --
+  --     {
+  --       "<leader>dT",
+  --       function()
+  --         require("dap").terminate()
+  --       end,
+  --       desc = "Terminate",
+  --     },
+  --   },
+  -- },
+  --
+  -- {
+  --   "jay-babu/mason-nvim-dap.nvim",
+  --   ---@type MasonNvimDapSettings
+  --   opts = {
+  --     -- This line is essential to making automatic installation work
+  --     -- :exploding-brain
+  --     handlers = {},
+  --     automatic_installation = {
+  --       -- These will be configured by separate plugins.
+  --       exclude = {
+  --         "delve",
+  --         "python",
+  --       },
+  --     },
+  --     -- DAP servers: Mason will be invoked to install these if necessary.
+  --     ensure_installed = {
+  --       "bash",
+  --       "codelldb",
+  --       "php",
+  --       "python",
+  --     },
+  --   },
+  --   dependencies = {
+  --     "mfussenegger/nvim-dap",
+  --     "williamboman/mason.nvim",
+  --   },
+  -- },
+  -- {
+  --   "mfussenegger/nvim-dap-python",
+  --   lazy = true,
+  --   config = function()
+  --     local python = vim.fn.expand "~/.local/share/nvim/mason/packages/debugpy/venv/bin/python"
+  --     require("dap-python").setup(python)
+  --   end,
+  --   -- Consider the mappings at
+  --   -- https://github.com/mfussenegger/nvim-dap-python?tab=readme-ov-file#mappings
+  --   dependencies = {
+  --     "mfussenegger/nvim-dap",
+  --   },
+  -- },
+  -- {
+  --   "theHamsta/nvim-dap-virtual-text",
+  --   config = true,
+  --   dependencies = {
+  --     "mfussenegger/nvim-dap",
+  --   },
+  -- },
+  -- {
+  --   "rcarriga/nvim-dap-ui",
+  --   config = true,
+  --   keys = {
+  --     {
+  --       "<leader>du",
+  --       function()
+  --         require("dapui").toggle {}
+  --       end,
+  --       desc = "Dap UI",
+  --     },
+  --   },
+  --   dependencies = {
+  --     "jay-babu/mason-nvim-dap.nvim",
+  --     "leoluz/nvim-dap-go",
+  --     "mfussenegger/nvim-dap-python",
+  --     "nvim-neotest/nvim-nio",
+  --     "theHamsta/nvim-dap-virtual-text",
+  --   },
+  -- },
 }

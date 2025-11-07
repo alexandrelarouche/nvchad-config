@@ -47,3 +47,8 @@ map("n", "<leader>de", vim.diagnostic.open_float)
 map("n", "<leader>a", "<cmd>AerialToggle<CR>")
 
 map("n", "<leader>fs", "<cmd>Telescope lsp_document_symbols<CR>")
+
+map("n", "<leader>ds", "<cmd>")
+-- nnoremap <silent> <leader>dn :lua require('dap-python').test_method()<CR>
+-- nnoremap <silent> <leader>df :lua require('dap-python').test_class()<CR>
+-- vnoremap <silent> <leader>ds <ESC>:lua require('dap-python').debug_selection()<CR>
